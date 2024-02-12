@@ -9,7 +9,7 @@ authors = [{ name = "Andrey Zin", email = "andrey@zin.pw" }]
 description = "Tools to easily create ui(buttons, messages, etc ...) for telegram bots powered by aiogram"
 readme = "README.md"
 requires-python = ">=3.8"
-dependencies = ["aiogram >= 3.0.0"]
+dependencies = ["aiogram >= 3.0.0", "cachetools >= 5.0.0"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
