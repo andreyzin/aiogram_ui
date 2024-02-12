@@ -13,12 +13,8 @@ from .tools import wrap_middleware
 
 
 class LayoutMiddleware(BaseMiddleware):
-    def __init__(
-        self, layout_handler_dispatcher: Optional[LayoutDP] = None
-    ):
-        self.layout_dp = (
-            layout_handler_dispatcher or LayoutDP()
-        )
+    def __init__(self, layout_handler_dispatcher: Optional[LayoutDP] = None):
+        self.layout_dp = layout_handler_dispatcher or LayoutDP()
 
     async def __call__(
         self,
@@ -33,12 +29,13 @@ class LayoutMiddleware(BaseMiddleware):
                 event, layout_handler_dispatcher=self.layout_dp
             )
 
+        if data.get("is_original") is None:
+            data["is_original"] = True
+
         layout_context = cast(LayoutContext, data["layout_context"])
         state = data.get("state")
         if isinstance(state, FSMContext) and state is not None:
-            state = LayoutFSMContext(
-                state.storage, state.key, self.layout_dp
-            )
+            state = LayoutFSMContext(state.storage, state.key, self.layout_dp)
             data["state"] = state
 
         result = await handler(event, data)
@@ -51,6 +48,6 @@ class LayoutMiddleware(BaseMiddleware):
                 self,
                 HandlerObject(result).call,
             )
-            result = await wrapped_inner(event, data)
+            result = await wrapped_inner(event, data | {"is_original": False})
 
         return result
