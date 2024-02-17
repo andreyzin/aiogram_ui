@@ -1,19 +1,20 @@
 from datetime import timezone
-from datetime import datetime, timedelta, tzinfo
+from datetime import datetime
 from typing import Any
 from aiogram.filters.callback_data import MAX_CALLBACK_LENGTH
 from aiogram.filters.callback_data import CallbackData as AiogramCallbackData
-from pydantic import ValidationInfo, field_serializer, field_validator, root_validator
+from pydantic import ValidationInfo, field_validator
 
 
 class CallbackData(AiogramCallbackData, prefix=""):
     """
-    Base class for callback data wrapper
+    Base class for callback data wrapper with datetime support
 
     This class should be used as super-class of user-defined callbacks.
 
-    The class-keyword :code:`prefix` is required to define prefix
-    and also the argument :code:`sep` can be passed to define separator (default is :code:`:`).
+    Class-keywords:
+    :code:`prefix` is required to define prefix
+    :code:`sep` can be passed to define separator (default is :code:`:`).
     """
 
     def __init_subclass__(cls, **kwargs):

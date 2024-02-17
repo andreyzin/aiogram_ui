@@ -22,9 +22,10 @@ class DeepLink(BaseModel):
 
     This class should be used as super-class of user-defined callbacks.
 
-    The class-keyword :code:`prefix` is required to define prefix
-    and also the argument :code:`sep` can be passed to define separator (default is :code:`:`)
-    and :code:`is_plain` can be passed to define if is plain deep link(without base64url encoding)
+    Class-keywords (:code:`class MyDeepLink(DeepLink, prefix="my_dl", sep="_", is_plain=True):`)
+        :code:`prefix` is required to define prefix
+        :code:`sep` can be passed to define separator (default is :code:`_`)
+        :code:`is_plain` can be passed to define if is plain deep link(without base64url encoding)
     """
 
     if TYPE_CHECKING:
