@@ -174,7 +174,7 @@ class DeepLinkFilter(Command):
             deep_link = self.deep_link.decode(command.args)
         except CommandException:
             return False
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, AssertionError):
             return False
 
         if self.rule is None or self.rule.resolve(deep_link):
