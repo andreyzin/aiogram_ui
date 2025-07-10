@@ -19,3 +19,10 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/andreyzin/aiogram-ui"
 Issues = "https://github.com/andreyzin/aiogram-ui/issues"
+
+[tool.poetry]
+name = "aiogram-ui"
+version = "0.0.1"
+description = "Tools to easily create ui(buttons, messages, etc ...) for telegram bots powered by aiogram"
+authors = ["Andrey Zin <andrey@zin.pw>"]
+packages = [{ include = "aiogram_ui" }]
